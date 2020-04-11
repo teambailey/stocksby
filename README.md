@@ -1,2 +1,1 @@
-# stocksby
-Simple fintech app using the Ploygon.io API
+Simple fintech webapp using Ploygon.io API
