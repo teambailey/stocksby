@@ -1,0 +1,15 @@
+ul {
+  display: flex;
+}
+
+// set navigation vertically for mobile
+.navbar-menu.is-active {
+  ul {
+    display: block;
+  }
+}
+
+// override for some reason 
+.container>.navbar .navbar-menu {
+  margin-right: 0;
+}
