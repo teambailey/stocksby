@@ -1,5 +1,5 @@
 // Pages
-import Home from './pages/home';
+import Dashboard from './pages/dashboard';
 import About from './pages/about';
 
 // Routing config
@@ -12,8 +12,8 @@ const Routes = [
   {
     // index must be last in the array
     path: '/',
-    component: Home,
-    linkText: 'Home',
+    component: Dashboard,
+    linkText: 'Dashboard',
   },
 ];
 
