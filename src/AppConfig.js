@@ -6,15 +6,15 @@ import About from './pages/about';
 const Routes = [
   {
     path: '/about',
-    file: About,
+    component: About,
     linkText: 'About',
   },
   {
     // index must be last in the array
     path: '/',
-    file: Home,
+    component: Home,
     linkText: 'Home',
   },
 ];
 
-export default Routes;
+export { Routes };
