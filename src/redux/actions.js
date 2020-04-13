@@ -1,4 +1,4 @@
-//ACTION CREATOR HELPER FUNCTION
+// Action creation helper function
 const action = (type, payload) => {
   return { type, payload };
 };
