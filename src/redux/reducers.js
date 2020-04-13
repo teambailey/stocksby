@@ -17,7 +17,7 @@ const counterReducer = (state = { counter: 0 }, action) => {
   }
 };
 
-const symbolReducer = (state = { symbol: '' }, action) => {
+const searchReducer = (state = { symbol: 'AAPL' }, action) => {
   switch (action.type) {
     case 'SET_ACTIVE_STOCK':
       return {
@@ -31,7 +31,7 @@ const symbolReducer = (state = { symbol: '' }, action) => {
 
 const storeReducers = combineReducers({
   counterReducer,
-  symbolReducer,
+  searchReducer,
 });
 
 export default storeReducers;
