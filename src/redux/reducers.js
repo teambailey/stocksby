@@ -36,10 +36,36 @@ const tickerNews = (state = { news: {} }, action) => {
   }
 };
 
+const lastTrade = (state = { last: {} }, action) => {
+  switch (action.type) {
+    case 'SET_ACTIVE_STOCK_LAST_TRADE':
+      return {
+        ...state,
+        last: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
+const lastQuote = (state = { quote: {} }, action) => {
+  switch (action.type) {
+    case 'SET_ACTIVE_STOCK_LAST_QUOTE':
+      return {
+        ...state,
+        quote: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
 const storeReducers = combineReducers({
   searchReducer,
   tickerDetails,
   tickerNews,
+  lastTrade,
+  lastQuote,
 });
 
 export default storeReducers;
