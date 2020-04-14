@@ -5,20 +5,25 @@ import {
   getTickerDetails,
   getTickerNews,
   getLastTrade,
+  getPreviousClose,
   getLastQuote,
-  // getOpenClose,
 } from '../data/api';
 import Hero from '../components/Hero';
+import NotFoundHero from '../components/NotFoundHero';
 import CurrentInfoBox from '../components/CurrentinfoBox';
 import NewsBox from '../components/NewsBox';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
-  const tickerSymbol = useSelector((state) => state.searchReducer.symbol);
+  const symbol = useSelector((state) => state.searchReducer.symbol);
+  const isValidSymbol = useSelector(
+    (state) => state.validateSymbol.isValidSymbol
+  );
 
   const [details, setDetails] = useState({});
   const [news, setNews] = useState([]);
   const [lastTrade, setLastTrade] = useState();
+  const [lastClose, setLastClose] = useState();
   const [lastQuote, setLastQuote] = useState();
 
   const buildDetails = (res) => {
@@ -35,56 +40,67 @@ const Dashboard = () => {
 
   const buildNews = (res) => setNews(res.data);
   const buildLastTrade = (res) => setLastTrade(res.data.last.price);
+  const buildPreviousClose = (res) => setLastClose(res.data.results[0].c);
   const buildLastQuote = (res) => setLastQuote(res.data.last.askprice);
-  // const buildOpenClose = (res) => setOpenClose(res.data);
 
   useEffect(() => {
-    getTickerDetails(tickerSymbol, buildDetails);
-    getTickerNews(tickerSymbol, buildNews);
-    getLastTrade(tickerSymbol, buildLastTrade);
-    getLastQuote(tickerSymbol, buildLastQuote);
-    // getOpenClose(tickerSymbol, buildOpenClose); // THIS IS NOT RETURNING FROM THE ENDPOINT
-  }, [tickerSymbol]);
+    getTickerDetails(symbol, buildDetails);
+    getTickerNews(symbol, buildNews);
+    getLastTrade(symbol, buildLastTrade);
+    getPreviousClose(symbol, buildPreviousClose);
+    getLastQuote(symbol, buildLastQuote);
+  }, [symbol]);
 
   useEffect(() => {
     dispatch(setActiveStockDetails(details));
   }, [dispatch, details]);
 
   return (
-    <div className="container">
-      {/* <p>{news.length > 0 ? news[0].url : ''}</p> */}
-      <Hero
-        image={details.logo}
-        title={details.symbol}
-        subtitle={details.name}
-        lastTrade={lastTrade}
-      />
+    <>
+      {isValidSymbol ? (
+        <div className="container">
+          <Hero
+            image={details.logo}
+            title={details.symbol}
+            subtitle={details.name}
+            lastTrade={lastTrade}
+            lastClose={lastClose}
+          />
 
-      <div className="section has-background-grey-lighter">
-        <div className="columns">
-          <div className="column">
-            <CurrentInfoBox heading="Last Trade" title={lastTrade} />
+          <div className="section has-background-grey-lighter">
+            <div className="columns">
+              <div className="column">
+                <CurrentInfoBox heading="Last Trade" title={lastTrade} />
+              </div>
+              <div className="column">
+                <CurrentInfoBox heading="Open" title="280" />
+              </div>
+              <div className="column">
+                <CurrentInfoBox heading="Close" title={lastClose} />
+              </div>
+              <div className="column">
+                <CurrentInfoBox heading="Last Quote" title={lastQuote} />
+              </div>
+            </div>
           </div>
-          <div className="column">
-            <CurrentInfoBox heading="Open" title="280" />
-          </div>
-          <div className="column">
-            <CurrentInfoBox heading="Close" title="273.25" />
-          </div>
-          <div className="column">
-            <CurrentInfoBox heading="Last Quote" title={lastQuote} />
-          </div>
+
+          {news.length > 0 ? (
+            <>
+              <hr className="has-background-grey-lighter	" />
+              <div className="section has-background-grey-lighter">
+                {news.map((item, i) => (
+                  <NewsBox key={i} news={item} />
+                ))}
+              </div>
+            </>
+          ) : (
+            ''
+          )}
         </div>
-      </div>
-
-      <hr className="has-background-grey-lighter	" />
-
-      <div className="section has-background-grey-lighter">
-        {news.map((item, i) => (
-          <NewsBox key={i} news={item} />
-        ))}
-      </div>
-    </div>
+      ) : (
+        <NotFoundHero />
+      )}
+    </>
   );
 };
 
