@@ -1,5 +1,6 @@
 import React from 'react';
 
+// Used as feedback when user enters an invalid ticker symbol
 const NotFoundHero = ({ image, title, subtitle, lastTrade, lastClose }) => {
   return (
     <div className="hero is-danger">

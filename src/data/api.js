@@ -36,7 +36,7 @@ export const getLastTrade = (stock, callback) => {
     .catch((err) => console.log(err));
 };
 
-// Previous Close
+// Previous close
 export const getPreviousClose = (stock, callback) => {
   axios
     .get(`${BASE_URL_V2}aggs/ticker/${stock}/prev?${API_KEY_QUERY}`)

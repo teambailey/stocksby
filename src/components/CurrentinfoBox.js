@@ -1,5 +1,6 @@
 import React from 'react';
 
+// Used to show live trade data
 const CurrentInfoBox = ({ heading, title }) => {
   return (
     <>

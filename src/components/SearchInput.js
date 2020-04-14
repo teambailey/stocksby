@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setActiveStock } from '../redux/actions';
 
+// Used to drive the api call by setting the ticker symbol value to the store
 const SearchInput = ({ border = false }) => {
   const dispatch = useDispatch();
   const [symbol, setSymbol] = useState('');
@@ -9,7 +10,9 @@ const SearchInput = ({ border = false }) => {
   const onSubmit = (e) => {
     e.preventDefault();
     if (symbol === '') return;
+    // save to symbol to store
     dispatch(setActiveStock(symbol));
+    // reset local state
     setSymbol('');
   };
 
@@ -29,7 +32,7 @@ const SearchInput = ({ border = false }) => {
             type="text"
             name="stock-symbol"
             placeholder="Enter Stock Symbol"
-            maxLength="4" // temp validation
+            maxLength="4"
             className={`input ${border ? 'is-primary' : ''}`}
             value={symbol}
             onChange={onChange}

@@ -1,5 +1,6 @@
 import React from 'react';
 
+// Main hero
 const Hero = ({ image, title, subtitle, lastTrade, lastClose }) => {
   return (
     <div className="hero is-primary">

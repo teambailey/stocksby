@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import { Switch, Route, NavLink } from 'react-router-dom';
 import { Routes } from '../AppConfig';
-
 import SearchInput from '../components/SearchInput';
 
 // reverse the Routes array to ease future styling issues
@@ -12,6 +11,7 @@ const reversedRoutesArray = Routes.slice(0).reverse();
 const Navigation = () => {
   const [isActive, setActive] = useState(false);
 
+  // used for the hamburger menu action
   const toggleIsActive = () => {
     if (isActive) setActive(false);
     else setActive(true);

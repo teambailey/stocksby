@@ -1,10 +1,9 @@
 import { combineReducers } from 'redux';
 
+// Sets the validation for the ticker symbol
 const validateSymbol = (state = { isValidSymbol: true }, action) => {
   switch (action.type) {
     case 'SET_VALID_ACTIVE_STOCK':
-      console.log('here', action.payload);
-
       return {
         ...state,
         isValidSymbol: action.payload,
@@ -14,6 +13,7 @@ const validateSymbol = (state = { isValidSymbol: true }, action) => {
   }
 };
 
+// Sets the ticker symbol and includes a default of Apple inc.
 const searchReducer = (state = { symbol: 'AAPL' }, action) => {
   switch (action.type) {
     case 'SET_ACTIVE_STOCK':
@@ -26,6 +26,7 @@ const searchReducer = (state = { symbol: 'AAPL' }, action) => {
   }
 };
 
+// Sets the company details and used to validate the symbol
 const tickerDetails = (state = { details: {} }, action) => {
   switch (action.type) {
     case 'SET_ACTIVE_STOCK_DETAILS':
@@ -38,6 +39,7 @@ const tickerDetails = (state = { details: {} }, action) => {
   }
 };
 
+// Sets the company news
 const tickerNews = (state = { news: {} }, action) => {
   switch (action.type) {
     case 'SET_ACTIVE_STOCK_NEWS':
@@ -50,6 +52,7 @@ const tickerNews = (state = { news: {} }, action) => {
   }
 };
 
+// Sets the last trade value
 const lastTrade = (state = { last: {} }, action) => {
   switch (action.type) {
     case 'SET_ACTIVE_STOCK_LAST_TRADE':
@@ -62,6 +65,7 @@ const lastTrade = (state = { last: {} }, action) => {
   }
 };
 
+// Sets the last quote
 const lastQuote = (state = { quote: {} }, action) => {
   switch (action.type) {
     case 'SET_ACTIVE_STOCK_LAST_QUOTE':
@@ -74,6 +78,7 @@ const lastQuote = (state = { quote: {} }, action) => {
   }
 };
 
+// Combine all reducers
 const storeReducers = combineReducers({
   validateSymbol,
   searchReducer,
