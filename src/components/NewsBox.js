@@ -20,7 +20,7 @@ const NewsBox = ({ news }) => {
           </div>
           <div className="media-content">
             <div className="content">
-              <p className="title is-3">{news.title}</p>
+              <p className="title is-3 is-size-4-mobile">{news.title}</p>
               <p className="subtitle is-7 has-text-grey">{formattedDate}</p>
               <p className="is-size-6">{news.summary}</p>
               <a
