@@ -1,13 +1,21 @@
 import axios from 'axios';
+import { setValidActiveStock } from '../redux/actions';
+import store from '../redux/store';
+
 const API_KEY_QUERY = `apiKey=${process.env.REACT_APP_API_KEY}`;
 const BASE_URL_V1 = `https://api.polygon.io/v1/`;
+const BASE_URL_V2 = `https://api.polygon.io/v2/`;
 
 // Ticker Details
 export const getTickerDetails = (stock, callback) => {
+  store.dispatch(setValidActiveStock(true));
   axios
     .get(`${BASE_URL_V1}meta/symbols/${stock}/company?${API_KEY_QUERY}`)
     .then(callback)
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      store.dispatch(setValidActiveStock(false));
+      console.log(err);
+    });
 };
 
 // Ticker News
@@ -24,6 +32,14 @@ export const getTickerNews = (stock, callback) => {
 export const getLastTrade = (stock, callback) => {
   axios
     .get(`${BASE_URL_V1}last/stocks/${stock}?${API_KEY_QUERY}`)
+    .then(callback)
+    .catch((err) => console.log(err));
+};
+
+// Previous Close
+export const getPreviousClose = (stock, callback) => {
+  axios
+    .get(`${BASE_URL_V2}aggs/ticker/${stock}/prev?${API_KEY_QUERY}`)
     .then(callback)
     .catch((err) => console.log(err));
 };
