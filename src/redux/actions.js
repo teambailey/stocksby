@@ -4,10 +4,12 @@ const action = (type, payload) => {
 };
 
 // Actions
-const INCREMENT = 'INCREMENT';
-const DECREMENT = 'DECREMENT';
 const SET_ACTIVE_STOCK = 'SET_ACTIVE_STOCK';
+const SET_ACTIVE_STOCK_DETAILS = 'SET_ACTIVE_STOCK_DETAILS';
+const SET_ACTIVE_STOCK_NEWS = 'SET_ACTIVE_STOCK_NEWS';
 
-export const incrementCounter = (counter) => action(INCREMENT, counter);
-export const decrementCounter = (counter) => action(DECREMENT, counter);
 export const setActiveStock = (symbol) => action(SET_ACTIVE_STOCK, symbol);
+export const setActiveStockDetails = (symbol) =>
+  action(SET_ACTIVE_STOCK_DETAILS, symbol);
+export const setActiveStockNews = (symbol) =>
+  action(SET_ACTIVE_STOCK_NEWS, symbol);

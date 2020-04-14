@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setActiveStock } from '../redux/actions';
 
-// import { getTickerDetails } from '../data/api';
-
 const SearchInput = ({ border = false }) => {
   const dispatch = useDispatch();
   const [symbol, setSymbol] = useState('');
@@ -12,7 +10,6 @@ const SearchInput = ({ border = false }) => {
     e.preventDefault();
     if (symbol === '') return;
     dispatch(setActiveStock(symbol));
-    // getTickerDetails(symbol);
     setSymbol('');
   };
 
