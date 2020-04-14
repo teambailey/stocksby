@@ -2,8 +2,6 @@ import React from 'react';
 import * as moment from 'moment';
 
 const NewsBox = ({ news }) => {
-  console.log(news);
-
   let date = moment(news.timestamp);
   let formattedDate = date.format('LLLL');
 
