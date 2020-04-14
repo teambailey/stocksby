@@ -1,0 +1,26 @@
+@charset "utf-8";
+
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+
+// Brand colors
+$green: #35AC5E;
+$beige-light: #d0d1cd;
+$beige-lighter: #eff0eb;
+
+// Global variables
+$family-sans-serif: 'Roboto',
+sans-serif;
+$primary: $green;
+$link: $green;
+$grey-light: $beige-light;
+$fullhd-enabled: false;
+
+// Component variables
+$body-background-color: $beige-lighter;
+$control-border-width: 2px;
+$input-border-color: transparent;
+$input-shadow: none;
+
+// Bulma import
+@import '../../node_modules/bulma/bulma.sass'
