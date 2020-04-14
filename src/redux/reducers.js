@@ -1,5 +1,19 @@
 import { combineReducers } from 'redux';
 
+const validateSymbol = (state = { isValidSymbol: true }, action) => {
+  switch (action.type) {
+    case 'SET_VALID_ACTIVE_STOCK':
+      console.log('here', action.payload);
+
+      return {
+        ...state,
+        isValidSymbol: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
 const searchReducer = (state = { symbol: 'AAPL' }, action) => {
   switch (action.type) {
     case 'SET_ACTIVE_STOCK':
@@ -61,6 +75,7 @@ const lastQuote = (state = { quote: {} }, action) => {
 };
 
 const storeReducers = combineReducers({
+  validateSymbol,
   searchReducer,
   tickerDetails,
   tickerNews,
