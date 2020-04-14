@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Hero = ({ image, title, subtitle, lastTrade }) => {
+const Hero = ({ image, title, subtitle, lastTrade, lastClose }) => {
   return (
     <div className="hero is-primary">
       <div className="hero-body">
@@ -23,8 +23,9 @@ const Hero = ({ image, title, subtitle, lastTrade }) => {
                       {subtitle}
                     </h2>
                     <p className="title has-text-primary is-size-5">
-                      {(lastTrade - 273.25).toFixed(2)} /{' '}
-                      {(((lastTrade - 273.25) / 273.25) * 100).toFixed(2)}%
+                      {(lastTrade - lastClose).toFixed(2)} /{' '}
+                      {(((lastTrade - lastClose) / lastClose) * 100).toFixed(2)}
+                      %
                     </p>
                   </div>
                 </div>
